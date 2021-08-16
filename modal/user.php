@@ -130,7 +130,7 @@ class user extends Database
                                 </div>
                                
                                 <div class="message col-sm-7">
-                                    <h4 class="name font-16 text-dark">
+                                    <h4 class="name font-12 text-dark">
                                     ' . ucfirst($rows["name"]) . '
                                      </h4>
                                     <p class="message font-10 text-muted">

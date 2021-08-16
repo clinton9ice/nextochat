@@ -5,4 +5,4 @@ $user = new user();
 $r = ["receiver"=> 2403002, "sender"=>$_SESSION["clientSession"]];
 echo "<pre>";
 //print_r();
-$user->users_html($user->getUsers());
+//$user->users_html($user->getUsers());

@@ -106,7 +106,7 @@ if (isset($_POST["fetch_sender_messages"])){
                 </div>';
                 }
                 else{
-                    $group .= ' <div class="receiver d-flex align-items-center item">
+                    $group .= ' <div class="receiver d-flex align-items-end item">
                     <div class="image">
                         '.$receiver_image.'
                     </div>
