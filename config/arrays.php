@@ -4,8 +4,8 @@ session_start();
 
 //Define directory
 $dir =  str_replace("\\","/", __DIR__);
-define("root", pathinfo($dir, 1));
 
+define("root", pathinfo($dir, 1));
 
 //Define stylesheets
 const stylesheets = [
@@ -41,9 +41,25 @@ const meta = [
 ];
 
 
-const database = [
-    "db" => "g-strip",
-    "host" => "localhost",
-    "name" => "root",
-    "password" => ""
-];
+// const database = [
+//     "db" => "heroku_c19be1cbb8368d8",
+//     "host" => "us-cdbr-east-04.cleardb.com",
+//     "name" => "root",
+//     "password" => ""
+// ];
+
+//Get Heroku ClearDB connection information
+$cleardb_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+$cleardb_server = $cleardb_url["host"];
+$cleardb_username = $cleardb_url["user"];
+$cleardb_password = $cleardb_url["pass"];
+$cleardb_db = substr($cleardb_url["path"],1);
+$active_group = 'default';
+$query_builder = TRUE;
+
+define("database", [
+    "db" => $cleardb_server,
+    "host" => $cleardb_db,
+    "name" => $cleardb_username,
+    "password" => $cleardb_password
+]);
