@@ -3,6 +3,11 @@ $(document).ready(function () {
             listContainer = body.find("#user_list"),
             msg_container = body.find("#message_field");
 
+        //Clear any error message on input focus
+        $("input").on("focus", (e) => {
+            $("#notify").addClass("hide");
+        });
+
         class Request {
             constructor(url, method = "GET", dataType = "Json") {
                 this.url = url;
@@ -125,7 +130,9 @@ $(document).ready(function () {
         })
         //Resume realtime chat update on mouseleave
         msg_container.on("mouseleave", function () {
-           setTimeout(()=>{ msg_container.removeClass("focused");}, 4000);
+            setTimeout(() => {
+                msg_container.removeClass("focused");
+            }, 4000);
         })
 
 
@@ -151,7 +158,9 @@ $(document).ready(function () {
                         //create connection for fetching dynamic messages
                         let connection = new Request("module/connection", "POST", "html");
                         connection.send(info, function (e) {
+                            if (!empty(e)) {
                                 msg_container.html(e);
+                            }
                         });
                         if (!msg_container.hasClass("focused")) {
                             scrollDown();
@@ -216,8 +225,10 @@ $(document).ready(function () {
                 let request = new Request("module/connection", "post", "html");
                 request.send("search_request=" + value, function (e) {
                     search_input.removeClass("typing");
-                    search_input.addClass("typing");
-                    listContainer.html(e);
+                    if (!empty(e)) {
+                        search_input.addClass("typing");
+                        listContainer.html(e);
+                    }
                 })
             })
         }
