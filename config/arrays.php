@@ -48,18 +48,11 @@ const meta = [
 //     "password" => ""
 // ];
 
-//Get Heroku ClearDB connection information
-$cleardb_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
-$cleardb_server = $cleardb_url["host"];
-$cleardb_username = $cleardb_url["user"];
-$cleardb_password = $cleardb_url["pass"];
-$cleardb_db = substr($cleardb_url["path"],1);
-$active_group = 'default';
-$query_builder = TRUE;
 
-define("database", [
-    "db" => $cleardb_server,
-    "host" => $cleardb_db,
-    "name" => $cleardb_username,
-    "password" => $cleardb_password
-]);
+const database = [
+    "db" => "sql4431286",
+    "hostname" => "sql4.freemysqlhosting.net",
+    "name" => "sql4431286",
+    "password" => "wvsHK65t8S",
+    "port"=> 3306
+];

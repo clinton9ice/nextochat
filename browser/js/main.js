@@ -151,9 +151,7 @@ $(document).ready(function () {
                         //create connection for fetching dynamic messages
                         let connection = new Request("module/connection", "POST", "html");
                         connection.send(info, function (e) {
-                            if (!empty(e)) {
                                 msg_container.html(e);
-                            }
                         });
                         if (!msg_container.hasClass("focused")) {
                             scrollDown();
@@ -218,10 +216,8 @@ $(document).ready(function () {
                 let request = new Request("module/connection", "post", "html");
                 request.send("search_request=" + value, function (e) {
                     search_input.removeClass("typing");
-                    if (!empty(e)) {
-                        search_input.addClass("typing");
-                        listContainer.html(e);
-                    }
+                    search_input.addClass("typing");
+                    listContainer.html(e);
                 })
             })
         }
