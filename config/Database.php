@@ -10,8 +10,8 @@ class Database
 
     public function __construct()
     {
-        $this->connect = new mysqli("sql4.freemysqlhosting.net",
-            "sql4431286", "wvsHK65t8S", "sql4431286",3306) or die("Error connecting to Database " . $this->getConnect()->error);
+        $this->connect = new mysqli("localhost",
+            "root", "", "g-strip",3306) or die("Error connecting to Database " . $this->getConnect()->error);
     }
 
     /**
