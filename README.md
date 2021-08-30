@@ -5,7 +5,7 @@
 
 - 🤗 Nextochat is an intended chat app. This is built strictly with **PHP** and other languages just for learning purposes.
 <p align="left">
-<a href="https://nextochat.herokuapp.com/" target="blank" style="color: blue">
+<a href="https://nextochat.herokuapp.com/" target="_blank" style="color: blue">
     Nextochat
 </a>
 </p>
