@@ -4,11 +4,10 @@
 <p align="left"> <img src="https://komarev.com/ghpvc/?username=clinton9ice&label=Profile%20views&color=0e75b6&style=flat" alt="clinton9ice" /> </p>
 
 - 🤗 Nextochat is an intended chat app. This is built strictly with **PHP** and other languages just for learning purposes.
-<p align="left">
-<a href="https://nextochat.herokuapp.com/" target="_blank" style="color: blue">
+<a href="https://nextochat.herokuapp.com/" target="blank" style="color: blue">
     Nextochat
 </a>
-</p>
+
 
 - 🌱 I’m currently learning **PHP, And Js Web sockets**
 
