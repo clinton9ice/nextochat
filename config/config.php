@@ -61,10 +61,10 @@ const meta = [
 
 
 const database = [
-    "db" => "sql4431286",
-    "hostname" => "sql4.freemysqlhosting.net",
-    "name" => "sql4431286",
-    "password" => "wvsHK65t8S",
+    "db" => "nextochat",
+    "hostname" => "localhost",
+    "name" => "root",
+    "password" => "",
     "port"=> 3306
 ];
 //

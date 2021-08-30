@@ -7,8 +7,8 @@ class Database
 
     public function __construct()
     {
-        $this->connect = new mysqli("localhost",
-            "root", "", "g-strip",3306) or die("Error connecting to Database " . $this->getConnect()->error);
+        $this->connect = new mysqli(database["hostname"],
+            database["name"], database["password"], database["db"],database["port"]) or die("Error connecting to Database " . $this->getConnect()->error);
     }
 
     /**
