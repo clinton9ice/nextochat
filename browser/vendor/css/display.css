@@ -1,6 +1,10 @@
 .flex{
   display: flex !important;
 }
+.flex-column{ flex-direction: column;}
+.flex-auto-wrap{ flex-flow: column wrap; }
+.flex-wrap{ flex-wrap: wrap; }
+
 .flex-content-between{ justify-content: space-between;}
 .flex-content-center{ justify-content: center;}
 .flex-content-start{ justify-content: start;}
@@ -17,3 +21,21 @@
 .block{
   display: block !important;
 }
+
+.p-absolute{
+  position: absolute !important;
+}
+.p-relative{
+  position: relative !important;
+}
+.p-sticky{
+  position: sticky !important;
+}
+.p-fixed{
+  position: fixed !important;
+}
+
+.top-0{ top: 0 !important;}
+.bottom-0{ bottom: 0 !important;}
+.right-0{ right: 0 !important;}
+.left-0{ left: 0 !important;}

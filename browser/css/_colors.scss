@@ -1,0 +1,29 @@
+/*HSL*/
+$bright-lilac: hsla(276, 91%, 79%, 1);
+$bright-lilac-2: hsla(272, 87%, 76%, 1);
+$lavender-floral: hsla(267, 83%, 74%, 1);
+$lavender-floral-2: hsla(263, 80%, 72%, 1);
+$medium-purple: hsla(260, 78%, 70%, 1);
+$medium-purple-2: hsla(257, 76%, 67%, 1);
+$medium-slate-blue: hsla(254, 74%, 65%, 1);
+
+$default: #fff;
+$gray: #e5e5e5;
+$secondary: hsl(276, 50%, 95%);
+$bg-color: hsl(276, 80%, 99%);
+$primary: hsl(254, 74%, 65%);;
+$warning: hsl(337, 94%, 55%);
+
+//link
+$link-color: hsla(260, 78%, 70%, 1);
+
+//Text
+$text-primary: hsl(276, 91%, 98%);
+$text-secondary: hsl(276, 9%, 78%);
+//$text-dark: hsl(276, 91%, 9%);
+$text-dark: hsl(277, 17%, 45%);
+
+
+/*Gradient */
+$gradient-top: linear-gradient(0deg, #D397FAff, #C68FF7ff, #B886F4ff, #AB7EF1ff, #9E75EEff, #906DEBff, #8364E8ff);
+$gradient-right: linear-gradient(90deg, #D397FAff, #C68FF7ff, #B886F4ff, #AB7EF1ff, #9E75EEff, #906DEBff, #8364E8ff);

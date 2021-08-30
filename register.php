@@ -3,7 +3,9 @@ include_once ".links.php";
 $title = "Let's get started";
 include_once "includes/header.php";
 if ($user->isActive()){ header("location: index");}
+
 ?>
+
 
     <body class="d-flex align-items-center justify-content-center">
 

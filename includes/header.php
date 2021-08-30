@@ -1,4 +1,4 @@
-<?php include_once "config/arrays.php"; ?>
+<?php include_once "config/config.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,7 +24,8 @@
     //Javascript
     foreach (script as $js):
     if (is_array($js)){
+        $type = !empty($js["type"]) and is_array($js["type"]) ? $js["type"] : "application/javascript"
     ?>
-    <script type="application/javascript" src="<?= $js["url"]?>"></script>
+    <script type="<?= $type ?>" src="<?= $js["url"]?>"></script>
     <?php } endforeach;?>
 </head>

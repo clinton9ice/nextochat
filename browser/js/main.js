@@ -1,12 +1,59 @@
 $(document).ready(function () {
+
         let body = $("body"),
-            listContainer = body.find("#user_list"),
-            msg_container = body.find("#message_field");
+            msg_container = body.find("#message_field"),
+            modal = body.find("#nexto-overlay");
+
+        function loader(parent) {
+            let html = `<div class="loader-blocks" id="loader">
+                       <div class="loader">
+                              <svg class="circle-outer" viewBox="0 0 86 86">
+                                <circle class="back" cx="43" cy="43" r="40"></circle>
+                                <circle class="front" cx="43" cy="43" r="40"></circle>
+                                <circle class="new" cx="43" cy="43" r="40"></circle>
+                              </svg>
+                              <svg class="circle-middle" viewBox="0 0 60 60">
+                                <circle class="back" cx="30" cy="30" r="27"></circle>
+                                <circle class="front" cx="30" cy="30" r="27"></circle>
+                              </svg>
+                              <svg class="circle-inner" viewBox="0 0 34 34">
+                                <circle class="back" cx="17" cy="17" r="14"></circle>
+                                <circle class="front" cx="17" cy="17" r="14"></circle>
+                              </svg>
+                              <div class="text" data-text="loading..."></div>               
+                        </div>
+                       </div>`
+            parent.append(html);
+        }
+
+        //Has Attribute handler
+        $.fn.hasAttr = function (name) {
+            return this.attr(name) !== undefined;
+        };
+
+        //Check if the window has completely loaded
+        $(window).on("load", function () {
+            //remove the loader if it exists
+            if (body.find("#loader").length > 0) {
+                setTimeout(() => {
+                    $("#loader").remove()
+                }, 2000)
+            }
+        })
 
         //Clear any error message on input focus
         $("input").on("focus", (e) => {
             $("#notify").addClass("hide");
         });
+
+        function data(e, i = "") {
+            return $(`[data-${e}='${i}']`);
+        }
+
+        //Default actions
+        data("action", "slide").on("click", function () {
+            $(this).parent().find("[data-display='active']").toggleClass("active")
+        })
 
         class Request {
             constructor(url, method = "GET", dataType = "Json") {
@@ -48,9 +95,56 @@ $(document).ready(function () {
             }
         }
 
-        $("[data-prevenDefault]").on("submit", function (e) {
+        //Prevent Default actions
+        $("[data-prevenDefault]").on("click", function (e) {
             e.preventDefault();
         });
+
+        //Stop propagation
+        $("[data-propagation]").on("click", function (e) {
+            e.stopPropagation();
+        })
+
+        $(window).on("click", function () {
+            if ($(modal).hasClass("active")) {
+                modal.removeClass("active");
+            }
+
+            //Dropdown
+            let display = $(".dropdown-menu").css("display");
+            if (display !== "none") {
+                $(".dropdown-menu").animate(400, "slow").css("display", "none")
+            }
+        });
+
+        //Fold
+        $("[data-wrap]").on("click", function () {
+
+            let ev = $(this).attr("data-wrap");
+
+            if (!empty(ev)) {
+                // ev.toggleClass("hide")
+                //Fetch the target container from the attribute name
+                let wrap_container = body.find("#" + ev)
+
+                if (wrap_container.length > 0) {
+                    wrap_container.hasAttr("data-wrapper")?
+                        wrap_container.toggleClass("visible")
+                        : wrap_container.slideToggle(300);
+                }
+            }
+        });
+
+        //Data dropdown Events
+        $("[data-dropdown]").on("click", function () {
+            let ev = $(this).parent(".dropdown").find(".dropdown-menu")
+            if ($(this).attr("data-dropdown") == "" || $(this).attr("data-dropdown")) {
+                ev.fadeToggle();
+            } else {
+                ev.toggleClass("active")
+            }
+        })
+
 
         function scrollDown() {
             $(msg_container).animate({
@@ -101,8 +195,11 @@ $(document).ready(function () {
                 if (!empty(data.login_request) && !empty(data.password)) {
                     if (validEmail(data.login_request)) {
                         let server = new Request("module/connection", "POST");
+                        loader(body);
                         server.send(data, (e) => {
-                            if (e.success) location.reload(false);
+                            if (e.success){
+                                location.reload(false);
+                            }
                             else if (e.error) notify(e.error, "danger");
                         });
                     } else {
@@ -114,29 +211,62 @@ $(document).ready(function () {
 
         function Logout() {
             $("[data-action='logout']").on("click", function () {
+                swal({
+                    title: "Are you sure to sign out",
+                    icon: "warning",
+                    buttons: ["Cancel", "I'm sure"],
+                    dangerMode: true,
+                }).then(function (e) {
+                    if (e) {
+                        let request = new Request("module/connection");
+                        request.send({exit_request: ""}, (e) => {
+                            if (e.success) {
+                                swal({
+                                    text: "You have successfully logged out...",
+                                    icon: "success"
+                                }).then(() => {
+                                    location.reload();
+                                })
 
-                if (confirm("Are you sure you want to logout?")) {
-                    let request = new Request("module/connection");
-                    request.send({exit_request: ""}, (e) => {
-                        if (e.success) location.reload();
-                    });
-                }
+                            }
+
+                        });
+                    }
+                })
+
             })
         }
 
-        //Stop realtime chat update on mouseenter
-        msg_container.on("mouseenter", function () {
-            msg_container.addClass("focused")
-        })
-        //Resume realtime chat update on mouseleave
-        msg_container.on("mouseleave", function () {
-            setTimeout(() => {
-                msg_container.removeClass("focused");
-            }, 4000);
-        })
-
-
         function Chat_arena() {
+
+            function header() {
+
+                //Video call service
+                $("#vd-chat").on("click", () => {
+                    swal({
+                        title: "Service Not Available",
+                        text: "Sorry But Video chat is not available for now",
+                        dangerMode: true
+                    });
+                });
+
+                //Voice call service
+                $("#v-chat").on("click", () => {
+                    swal({
+                        title: "Service Not Available",
+                        text: "Sorry But Voice call is not available for now",
+                        dangerMode: true
+                    });
+                })
+
+                //more option
+                $("#more-from-header").on("click", function (e) {
+                    e.preventDefault();
+                    modal.addClass("active")
+                });
+
+
+            }
 
             //History back
             $("[data-prev]").on("click", function () {
@@ -170,12 +300,36 @@ $(document).ready(function () {
 
             }
 
+            //Stop realtime chat update on mouseenter
+            msg_container.on("mouseenter", function () {
+                msg_container.addClass("focused")
+            })
+
+            //Resume realtime chat update on mouseleave
+            msg_container.on("mouseleave", function () {
+                setTimeout(() => {
+                    msg_container.removeClass("focused");
+                }, 4000);
+            })
+
             //Send message
             let textarea = body.find("#textarea"),
-                send_button = body.find("#send_msg");
+                send_button = body.find("#send-msg");
+
+            //Append emojis
+            $("#textarea").emojioneArea({
+                tonesStyle: "radio",
+                search: false,
+                searchPosition: "bottom",
+                attributes: {
+                    spellcheck: true,
+                    autocomplete: "on",
+                    autocorrect: "on",
+                }
+            });
 
             send_button.on("click", function () {
-                let value = textarea.val().trim();
+                let value = $("#textarea").val();
                 if (!empty(value)) {
                     //Create connection
                     let connection = new Request("module/connection", "POST");
@@ -195,50 +349,58 @@ $(document).ready(function () {
                             }
                         })
                 }
-            });
-        }
 
-
-        function users() {
-            let request = new Request("module/connection", "GET", "html");
-            request.send("users", (e) => {
-                if (!empty(e) && body.hasClass("friendList")) {
-                    //Get users dynamically
-                    setInterval(function () {
-                        let server = new Request("module/connection", "GET", "html");
-                        server.send("users", function (e) {
-                            if (!empty(e) && !$("#search_users").hasClass("typing")) {
-                                listContainer.html(e);
-                            }
-                        });
-                    }, 1000)
-                }
             });
 
+            header()
         }
 
-        function search() {
-            let search_input = body.find("#search_users");
+        function leftSettings() {
 
-            search_input.on("keyup", function () {
-                let value = $(this).val().trim();
-                let request = new Request("module/connection", "post", "html");
-                request.send("search_request=" + value, function (e) {
-                    search_input.removeClass("typing");
-                    if (!empty(e)) {
-                        search_input.addClass("typing");
-                        listContainer.html(e);
-                    }
+            function search() {
+                let search_input = body.find("#search_users");
+
+                search_input.on("keyup", function () {
+                    let value = $(this).val().trim();
+                    let request = new Request("module/connection", "post", "html");
+                    request.send("search_request=" + value, function (e) {
+                        search_input.removeClass("typing");
+                        if (!empty(e)) {
+                            search_input.addClass("typing");
+                            listContainer.html(e);
+                        }
+                    })
                 })
-            })
+            }
+
+            function users() {
+                let request = new Request("module/connection", "GET", "html");
+                request.send("users", (e) => {
+                    if (!empty(e) && body.hasClass("friendList")) {
+                        //Get users dynamically
+                        setInterval(function () {
+                            let server = new Request("module/connection", "GET", "html");
+                            server.send("users", function (e) {
+                                if (!empty(e) && !$("#search_users").hasClass("typing")) {
+                                    listContainer.html(e);
+                                }
+                            });
+                        }, 1000)
+                    }
+                });
+
+            }
+
+            search();
+            users();
         }
 
-        Login();
+
+        loader(body);
         Register();
-        Logout();
+        Login();
+        leftSettings()
         Chat_arena();
-        search();
-        users();
+        Logout();
     }
-)
-;
+);

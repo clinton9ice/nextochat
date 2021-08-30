@@ -1,0 +1,153 @@
+@media all and (max-width: 850px){
+
+  .menus{
+    position: absolute !important;
+    background-color: $default;
+    visibility: visible;
+    opacity: 1 !important;
+    z-index: 40 !important;
+
+    &.visible{
+      width: 0 !important;
+      visibility: hidden;
+      opacity: 0;
+      z-index: 0;
+    }
+  }
+
+  .right-menu{
+    right: 0;
+    width: 250px !important;
+  }
+
+  .left-menu{
+    left: 0;
+    width: 280px !important;
+  }
+
+
+  .font-25{
+    font-size: calc(25px / 1.5) !important;
+  }
+
+}
+
+@media all and (max-width: 600px) {
+
+  .main-box .box{
+    height: 100%;
+  }
+
+
+
+  .mobile-6-off{
+    display: none !important;
+  }
+
+  .nav{
+    border-bottom: 1px solid $secondary !important;
+  }
+
+  aside.left-main-nav{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    padding:0 1rem 1rem;
+    width: 100%;
+    z-index: 100;
+
+    .aside-list{
+      position: relative;
+      flex-direction: row;
+      justify-content: center;
+      margin: auto;
+      background-color: $default !important;
+      width: 100%;
+      max-width: 500px;
+      box-shadow:0px 10px 24px -7px #e9ecef9c;
+      border-radius: 10px;
+      .nav{
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        justify-content: space-around;
+        width: 100%;
+      }
+      .title{
+        position: static !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        font-size: 13px !important;
+        background-color: transparent !important;
+        box-shadow: none !important;
+        margin-bottom: 0 !important;
+        padding: 0 !important;
+        transform: translate(0) !important;
+      }
+
+      .nav-items{
+        width: unset !important;
+        margin-bottom: 0 !important;
+        display: block;
+        background-color: transparent !important;
+
+        .link{
+          color: $text-dark;
+        }
+
+        &.active, .title.active{
+          color: $medium-slate-blue;
+          background-color: transparent !important;
+          .link{
+            color: inherit;
+          }
+
+        }
+
+      }
+    }
+
+  }
+
+  body > .container{
+    height: 100vh;
+  }
+
+
+  .message-body{
+    display: none;
+  }
+
+  .sm-menu-active{
+    visibility: visible !important;
+    opacity: 1 !important;
+    display: block;
+    &.visible{
+      width: 100% !important;
+
+    }
+  }
+
+  .left-menu{
+    
+    .panel-item{
+      padding: 1rem 2rem 1rem 1rem !important;
+    }
+
+  }
+
+}
+
+@media all  and (max-width: 400px) {
+  .mobile-4-off{display: none !important;}
+
+  aside.left-main-nav .aside-list .nav-items{
+    .link .title{
+      font-size: 0.65em !important;
+    }
+  }
+
+  .main-box .left-menu .box-panels{
+  height: 70vh !important;
+  }
+
+}

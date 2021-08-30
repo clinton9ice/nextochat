@@ -1,5 +1,5 @@
 <?php
-include_once "../config/arrays.php";
+include_once "../config/config.php";
 include_once "../modal/user.php";
 
 //Default encrypted id length is 7 digits

@@ -1,8 +1,5 @@
 <?php
-//namespace Database;
-//include_once "arrays.php";
 
-//use mysqli_stmt;
 
 class Database
 {
