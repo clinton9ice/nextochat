@@ -173,7 +173,7 @@ INSERT INTO `users` (`id`, `u_id`, `name`, `email`, `password`, `profile_image`,
 (3, 6114436, 'chinwe', 'kingsley@gmail.com', '$2y$10$S4.Z1wVgzJxFOU75THu5tu.vKNsmjhRaLsmgIKI9B1.N5Wy0Zp742', NULL, '1628545955', 'active'),
 (4, 1961220, 'mmesoma oyenekwu', 'mmeso@gmail.com', '$2y$10$rl6AqBzYkpZgyixTK3CBm.U971Efskjwlrk.TZCIbZsR7NlpzL2Zu', NULL, '1628699516', 'active'),
 (5, 1037359, 'amarachi', 'ammy@gmail.com', '$2y$10$6yNdfXxDjOB91WGX8iHCP.rZWFXQCBVHqBBgwPMIzUAPxmSNfowRy', NULL, '1628718873', 'offline');
-
+ 
 --
 -- Indexes for dumped tables
 --
