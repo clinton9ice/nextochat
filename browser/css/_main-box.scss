@@ -319,7 +319,7 @@
             height: 300px;
             width: 300px;
             background-color: #fff;
-            box-shadow: 0 0 16px rgba(0, 0, 0,0.01);
+            box-shadow: 0 0 16px rgba(0, 0, 0, 0.01);
             bottom: 49px;
             right: 0;
             overflow: hidden;
@@ -362,9 +362,19 @@
         }
       }
     }
+
+    .return-arrow-btn{
+      position: relative;
+      top: 0.5rem;
+      margin-right: 1.2rem;
+      font-size: 1.4em;
+      color: #495057;
+      display: none;
+    }
+
   }
 
-  
+
   .left-menu {
 
     .box-panels {
@@ -385,6 +395,7 @@
       padding-top: 1.6rem;
       padding-left: 1rem;
       border-radius: 6px;
+      display: none;
 
       .empty-alert {
         position: relative;
@@ -402,9 +413,10 @@
       transition: background-color 300ms ease;
       padding: 0.8rem 1rem 1rem 0.3rem;
       margin-bottom: 0.8rem;
+      cursor: pointer;
 
       &.active {
-        background-color: #f8f9fa;
+        background-color: #fdfdfd;
 
         &::before {
           content: "";
@@ -412,7 +424,7 @@
           right: 0;
           height: 100%;
           top: 0;
-          width: 20px;
+          width: 4px;
           background: $primary;
         }
       }
@@ -445,7 +457,7 @@
       }
 
       &:hover {
-        background-color: $default;
+        background-color: hsla(0, 0%, 95%, 0.542);
       }
 
       &.f-l {
@@ -474,17 +486,17 @@
       }
     }
 
-    &.visible{
+    &.visible {
       width: 450px;
     }
 
   }
 
-  .menus{
+  .menus {
     width: 0;
     opacity: 0;
     z-index: 0;
-    
+
     &.visible {
       width: 400px;
       opacity: 1;
@@ -492,7 +504,7 @@
       z-index: 50;
 
     }
-    
+
   }
 
 
@@ -525,17 +537,24 @@
     }
 
     .avatar {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      background: #e5e5e550;
 
-      img {
-        width: 55px;
-        height: 55px;
+      img, .default_img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
         object-fit: cover;
-        object-position: center;
+        object-position: top;
+        font-size: 0.5em;
       }
+
+      .default_img{
+        display: flex;
+        background: #e5e5e550;
+        align-items: center;
+        justify-content: center;
+        font-size: 1em !important;
+      }
+
     }
 
     .search-container {
@@ -562,6 +581,7 @@
         transition: 300ms ease-in-out;
         transform-style: preserve-3d;
         transform: scale(0.9);
+        padding: 0.5rem;
         $gray: #c4c4c4;
 
         a {
@@ -579,7 +599,6 @@
         &.active {
           transform: scale(1);
           background: $default;
-          padding: 0.5rem;
           margin: auto 0;
           border-top: 2px solid;
           border-radius: 4px;

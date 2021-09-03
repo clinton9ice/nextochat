@@ -6,10 +6,10 @@ if (!$user->isActive()) header("location: login");
 $client = $user->_user($_SESSION["clientSession"]);
 ?>
 
-<body class="flex">
-    
+<body class="flex chat-page">
 
-    <aside class="left-main-nav">
+    <aside class="left-main-nav" data-template-nav>
+
         <div class="aside-list flex flex-column flex-item-center">
 
             <div class="logo mobile-6-off">
@@ -46,7 +46,7 @@ $client = $user->_user($_SESSION["clientSession"]);
                 </li>
 
                 <li class="nav-items mobile-4-off">
-                    <a href="#" data-preventDefault class="link font-18" >
+                    <a href="#" data-preventDefault class="link font-18">
                         <i class="ri-question-line icon"></i>
                         <p class="title">Help</p>
                     </a>
@@ -87,49 +87,57 @@ $client = $user->_user($_SESSION["clientSession"]);
                     </div>
                 </div>
 
-                <ul class="d-flex flex-content-around align-items-center menu-tabs" id="menu-tabs">
-                    <li class="list-item font-16 active"><a href="#" title="Chats">Chats</a></li>
-                    <li class="list-item font-14 "><a href="#" title="Friends list">Friends</a></li>
-                    <li class="list-item font-14"><a href="#" title="groups">Groups</a></li>
+                <ul class="d-flex flex-content-around align-items-center menu-tabs" data-tabs="left-menu-tabs">
+                    <li class="list-item tab-item font-16 active"><a href="#" title="Chats" data-preventDefault="true">Chats</a>
+                    </li>
+                    <li class="list-item tab-item font-14 "><a href="#" title="Friends list" data-preventDefault="true">Friends</a>
+                    </li>
+                    <li class="list-item tab-item font-14"><a href="#" title="groups" data-preventDefault="true">Groups</a></li>
                 </ul>
+
             </nav>
 
-            <div class="box-panels bg-white">
-                <div class="panel d-non" data-page="chats" data-status="not-active">
-                    <div class="empty-alert d-non">No Chats available</div>
+                 <div class="box-panels bg-white" data-tab-pages>
 
-                    <a href="?user=1122334455" class="panel-item d-none flex flex-item-center justify-content-between" data-preventDefault="true">
+                <div class="panel" data-page="chats" data-status="active" style="display: block;">
+                    <div class="empty-alert d-none">No Chats available</div>
+
+                    <a data-id ="1122334455" class="panel-item d-non flex flex-item-center justify-content-between">
+
                         <div class="user-details flex flex-item-center">
                             <div class="img-c">
-                                <img src="browser/img/medicalert-uk-uXB-7la5vqA-unsplash.jpg" alt="user" loading="lazy">
+                                <img src="browser/img/medicalert-uk-uXB-7la5vqA-unsplash.jpg" alt="user" loading="lazy" data-list-image>
                             </div>
+
                             <div class="texts ml-3">
-                                <h4 class="name font-16 mb-2">John doe</h4>
-                                <p class="chat font-12 mb-0 text-muted">Hello worldm Lorem ipsum dolor sit amet, consectetur
-                                    adipisicing elit. Dolorum, similique.</p>
+                                <h4 class="name font-16 mb-2" data-label="name">John doe</h4>
+                                <p class="chat font-12 mb-0 text-muted">Hello worldm Lorem ipsum dolor sit amet,
+                                    consectetur
+                                    adipisicing elit. Dolorum, <similique class=""></similique>
+                                </p>
                             </div>
                         </div>
-                        <span class="time font-11 text-success">online</span>
+                        
+                        <span class="time font-11 text-success" data-status="online">online</span>
                     </a>
 
-                    <a href="?user=0912332322" class="panel-item d-none flex flex-content-between flex-item-center " data-preventDefault="true">
+                    <a data-id="0912332322" class="panel-item d-non flex flex-content-between flex-item-center ">
                         <div class="user-details flex flex-item-center col-sm-8">
                             <div class="img-c">
                             </div>
                             <div class="texts ml-3">
-                                <h4 class="name font-16 mb-2">Cynthia doe</h4>
+                                <h4 class="name font-16 mb-2" data-label="name">Cynthia doe</h4>
                                 <p class="chat font-12 mb-0 text-muted">You: Hi</p>
                             </div>
                         </div>
-                        <span class="time  font-11">3:15pm</span>
+                        <span class="time  font-11" data-status="offline">3:15pm</span>
                     </a>
-                    
                 </div>
 
-                <div class="panel d-none" data-page="friends" data-status="active">
-                    <div class="empty-alert d-none">You have no friends yet</div>
+                <div class="panel" data-page="friends" data-status="not-active">
+                    <div class="empty-alert">You have no friends yet</div>
 
-                    <a href="#" class="panel-item row flex-item-center f-l d-none" data-preventDefault="true">
+                    <a href="#" class="panel-item row flex-item-center f-l d-none">
                         <div class="user-details flex flex-item-center col-sm-8">
                             <div class="img-c">
                                 <img src="browser/img/medicalert-uk-uXB-7la5vqA-unsplash.jpg" alt="user" loading="lazy">
@@ -141,26 +149,31 @@ $client = $user->_user($_SESSION["clientSession"]);
                             </div>
                         </div>
                     </a>
-
                 </div>
 
-                <div class="panel d-none" data-page="groups"></div>
+                <div class="panel" data-page="groups" data-status="not-active">
+                    <div class="empty-alert">Groups empty</div>
+                </div>
             </div>
 
         </div>
-
 
         <div class="message-body box" id="msg-bd">
 
             <nav class="nav box-item flex flex-item-center flex-content-between p-2">
 
-                <div class="flex flex-item-end profile-details">
+                <div class="flex flex-item-baseline profile-details">
+
+                <a href="#" data-preventDefault="true" data-remove="parent" data-action="msg-bd" class="ri-arrow-left-line return-arrow-btn"></a>
+
                     <div class="avatar mr-3 ml-2">
-                        <img src="#" alt="User">
+                        <img src="#" alt="User" data-image="visitor">
+                        <div class="default_img d-none" data-default_profile></div>
                     </div>
+
                     <div class="properties">
-                        <h3 data-name="tab-title" class="tab-title font-20">Clair</h3>
-                        <p class="status font-10">Active</p>
+                        <h3  class="tab-title font-20" data-name="visitor"></h3>
+                        <p class="status font-10" data-status="visitor"></p>
                     </div>
                 </div>
 
@@ -216,7 +229,8 @@ $client = $user->_user($_SESSION["clientSession"]);
                         <div class="msg-group  flex-item-end flex">
                             <img src="browser/img/medicalert-uk-uXB-7la5vqA-unsplash.jpg" alt="" class="chat-img mr-2">
 
-                            <div class="message bg-whit">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur,
+                            <div class="message bg-whit">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                Pariatur,
                                 quasi. lorem300
                             </div>
                         </div>
@@ -243,11 +257,13 @@ $client = $user->_user($_SESSION["clientSession"]);
 
             <div class="chat-form">
                 <div class="form-control bg-light">
-                    <form data-prevenDefault="true" class="form flex align-items-center" method="post" id="cn-form">
+                    <form data-prevenDefault="true" class="form flex align-items-center" method="post" id="">
                         <textarea name="textarea" id="textarea" class="input-group textarea" placeholder="Type message here"></textarea>
+                       
                         <button type="button" class="btn bg-transparent text-muted" id="pop-document">
                             <a class="ri-attachment-line"></a>
                         </button>
+
                         <button type="button" class="btn btn-primary" id="send-msg">
                             <a class="ri-send-plane-line"></a>
                         </button>
@@ -255,7 +271,7 @@ $client = $user->_user($_SESSION["clientSession"]);
                 </div>
             </div>
 
-            <div class="empty-msg-bd text-center flex flex-column flex-content-center " id="msg-bd-empty">
+            <div class="empty-msg-bd text-center flex flex-column flex-content-center " id="_empty_msg_container">
                 <h3 class="text-muted font-25">Start a conversation</h3>
             </div>
 
