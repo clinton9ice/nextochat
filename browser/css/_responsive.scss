@@ -44,6 +44,12 @@
 
   .nav{
     border-bottom: 1px solid $secondary !important;
+
+    .properties{
+      .tab-title{
+        font-size: 1em !important;
+      }
+    }
   }
 
   aside.left-main-nav{
@@ -109,6 +115,12 @@
   body > .container{
     height: 100vh;
   }
+  .main-box .nav .avatar img, .main-box .nav .avatar .default_img{
+    width: 30px !important;
+    height: 30px !important;
+  }
+
+  
 
 
   .message-body{
@@ -116,8 +128,10 @@
 
     .return-arrow-btn{
       display: block !important;
+      font-size: 1em !important;
+      margin-right: 0 !important;
     }
-    
+
   }
 
   .sm-menu-active{

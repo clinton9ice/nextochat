@@ -84,15 +84,18 @@ $(document).ready(function () {
   }
 
   function notify(message, className) {
-    let notify = $("body").find("#notify");
-    body.append(`
-            <div class="alert p-2 bg-${className} active position-fixed  text-white font-14 notification-status" id="notify">
-                ${message}
-            </div>
-            `);
+    let notify = $("body").find("[data-notify]");
+    
+ 
     if (notify.length > 0) {
-      notify.remove();
+      notify.html("");
+
+      if (notify.attr("data-notify") === "alert") {
+        notify.addClass(className)
+        notify.text(message)
+      }
     }
+
   }
 
   //Prevent Default actions
@@ -157,6 +160,7 @@ $(document).ready(function () {
 
   function register_page() {
     let register = document.querySelector("#registerForm");
+
     $("#signUp").on("click", function () {
       let form = new FormData(register),
         data = {
@@ -185,11 +189,12 @@ $(document).ready(function () {
               }, 2000);
             } else if (e.error) notify(e.error, "danger");
           });
-        } else notify("Wrong email format", "danger");
+        } else notify("Wrong email format", "alert-danger");
       } else {
-        notify("Sorry but all fields are required", "danger");
+        notify("Sorry but all fields are required", "alert-danger");
       }
     });
+
   }
 
   function login_page() {
@@ -204,16 +209,15 @@ $(document).ready(function () {
       if (!empty(data.login_request) && !empty(data.password)) {
         if (validEmail(data.login_request)) {
           let server = new Request("module/connection", "POST");
-          loader(body);
           server.send(data, (e) => {
             if (e.success) {
               location.reload(false);
-            } else if (e.error) notify(e.error, "danger");
+            } else if (e.error) notify(e.error, "alert-danger");
           });
         } else {
-          notify("Wrong email address", "danger");
+          notify("Wrong email address", "alert-danger");
         }
-      } else notify("Empty fields", "danger");
+      } else notify("Empty fields", "alert-danger");
     });
   }
 
@@ -228,16 +232,9 @@ $(document).ready(function () {
         if (e) {
           localStorage.removeItem("visitors")
           let request = new Request("module/connection");
-          request.send({
-            exit_request: ""
-          }, (e) => {
+          request.send("exit_request", (e) => {
             if (e.success) {
-              swal({
-                text: "You have successfully logged out...",
-                icon: "success",
-              }).then(() => {
-                location.reload();
-              });
+              location.reload();
             }
           });
         }
@@ -424,10 +421,6 @@ $(document).ready(function () {
             //Check if there is any selected member on a mobile
             let bw_width = Math.ceil($(document).innerWidth());
 
-            $(window).on("resize", (e) => {
-              Math.ceil($(document).innerWidth()) <= 600 ? location.reload() : "";
-            });
-
             if (bw_width <= 600) {
 
               //Hide the template nav and show the chat body with the current user
@@ -474,6 +467,7 @@ $(document).ready(function () {
           //Turn off the textarea
           $(this).parents("#" + target).fadeOut();
           localStorage.removeItem("visitors");
+          $(".panel-item").removeClass("active")
 
           //Fade to user chats
           $("#left-settings").fadeIn();
@@ -545,5 +539,4 @@ $(document).ready(function () {
   login_page();
   logout_cmd();
   Main();
-  
 });

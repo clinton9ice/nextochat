@@ -8,7 +8,7 @@
 }
 
 body {
-  background-color: #fdfafe;
+  background-color: #fdfafe !important;
   font-family: "rubik", "sans-serif", "segoe-ui", "arial";
   color: #1b1e21;
   overflow: hidden;
@@ -35,6 +35,15 @@ input:focus {
 
 .text-danger {
   color: #f82073;
+}
+
+.max-h {
+  height: 100vh !important;
+  overflow-y: auto;
+  -webkit-box-orient: vertical !important;
+  -webkit-box-direction: normal !important;
+      -ms-flex-direction: column !important;
+          flex-direction: column !important;
 }
 
 .loader-blocks {
@@ -1145,6 +1154,9 @@ aside.left-main-nav .nav .nav-items.active > .link, aside.left-main-nav .nav .na
   .nav {
     border-bottom: 1px solid #f4ecf9 !important;
   }
+  .nav .properties .tab-title {
+    font-size: 1em !important;
+  }
   aside.left-main-nav {
     position: absolute;
     left: 0;
@@ -1213,11 +1225,17 @@ aside.left-main-nav .nav .nav-items.active > .link, aside.left-main-nav .nav .na
   body > .container {
     height: 100vh;
   }
+  .main-box .nav .avatar img, .main-box .nav .avatar .default_img {
+    width: 30px !important;
+    height: 30px !important;
+  }
   .message-body {
     display: none;
   }
   .message-body .return-arrow-btn {
     display: block !important;
+    font-size: 1em !important;
+    margin-right: 0 !important;
   }
   .sm-menu-active {
     visibility: visible !important;

@@ -5,11 +5,14 @@ include_once "includes/header.php";
 if ($user->isActive()){ header("location: index");}
 ?>
 
-<body class="d-flex align-items-center justify-content-center">
+<body class="flex flex-items-center flex-content-center max-h">
 
 <div class="chat-body container">
 
-    <div class="panel p-3 bg-white rounded shadow">
+    <div class=" m-auto col-lg-6">
+
+        <div class="alert" data-notify="alert"> </div>
+    <div class="panel bg-white p-3 rounded">
 
         <div class="panel-heading p-1 border-bottom">
             <h3 class="heading text-dark">Login</h3>
@@ -17,7 +20,7 @@ if ($user->isActive()){ header("location: index");}
         <br>
 
         <div class="panel-body mt-3">
-            <form class="form-container" data-prevenDefault method="post" id="loginForm">
+            <form class="form-container" data-preventDefault="true" method="post" id="loginForm">
 
                 <div class="form-group mb-4">
                     <label for="email" class="font-16">Email</label>
@@ -29,13 +32,13 @@ if ($user->isActive()){ header("location: index");}
                     <input type="password" placeholder="password" name="password" id="password" class="form-control font-14">
                 </div>
 
-                <button class="btn btn-dark btn-block" id="submitForm"> Continue to chat</button>
-                <div class="text-center mt-4">
-                    <a href="register" class="alert-link font-14">Don't have account yet?</a>
-                </div>
+                <button class="btn btn-dark btn-block" id="submitForm"> Proceed to chat</button>
             </form>
+            <div class="text-center mt-4">
+                    <a href="register" class="link font-14">Don't have account yet?</a>
+            </div>
         </div>
-
+    </div>
     </div>
 
 </div>
